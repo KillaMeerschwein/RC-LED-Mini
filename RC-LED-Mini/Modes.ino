@@ -1,6 +1,4 @@
 
-
-// Ruft zyklisch die Routine runMode() auf
 void cyclicRunMode(long msec)
 {
   static unsigned long prevTimeRunMode = millis();
@@ -9,16 +7,6 @@ void cyclicRunMode(long msec)
     prevTimeRunMode = millis();
     LEDStateMachine();
   }
-}
-
-unsigned int checkModeActive(unsigned int i)
-{
-  unsigned int state;
-  /* 
-   * diese Funktion soll prüfen, ob der Mode gewechselt wurde
-   * und Einfluss auf die Statemachine nehmen START und STOPP von Modis
-  */
-  return state;
 }
 
 void LEDStateMachine(void)
