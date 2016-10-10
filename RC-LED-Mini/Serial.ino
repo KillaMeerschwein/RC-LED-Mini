@@ -79,9 +79,6 @@ void SerialParser(void)
       Serial.print("!CLEAR");
     }
 
-//   String(pTokenArray[i]).toInt(); <-- INTEGER 
-//   String(pTokenArray[i]); <-- String 
-
     Serial.print("\n");                        // ABSCHLUSS 
     pInputString = &inputString[0];
     stringComplete = false;
@@ -111,10 +108,6 @@ void serialEvent() {
       stringComplete = true;
     }
     *pInputString++ = inChar;
-    /*
-    if(pInputString >= pInputString+sizeof(inputString))
-      pInputString = &inputString[0];
-      */
   }
 }
 

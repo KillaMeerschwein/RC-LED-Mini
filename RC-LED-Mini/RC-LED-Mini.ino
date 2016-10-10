@@ -2,7 +2,7 @@
  * 
  * 
  *        RC-LED Mini
- *        Version 0.94
+ *        Version 0.95
  *        
  *        0.94 + State Option
  *        0.93 + RC Channel Option
@@ -49,11 +49,7 @@ void loop () {
       if (OperationMode == Normal) {
          cyclicRunMode(50);
       }
-      
-     /* if (OperationMode == Settings) {
-         SettingMenu();
-      }*/
-      
+            
       if (stringComplete) {
          SerialParser();
       }

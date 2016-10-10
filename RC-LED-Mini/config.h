@@ -43,22 +43,6 @@ byte SetLEDArray[MaxLEDAnzahl] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 byte SetLEDState = 7;
 byte SettingLEDArray[MaxLEDAnzahl];
 
-/* ---------------------- RC Channel 1 and 2 ---------------------- */
-/* -------------------- StateMaschine RC Channels---------------------*/
-//#define Low             0
-//#define Mid             1 
-//#define High            2
-//#define MidToHigh       3 
-//#define HighToMid       4
-//#define MidToLow        5
-//#define LowToMid        6
-//#define LongPress       7
-
-//byte RCChannel1, RCChannel2;                // aktueller Zustand der Kanäle
-//byte previousRCChannel1,previousRCChannel2; // vorheriger Zustand der Kanäle
-//long RCChannelPressedTime = 0;              //  
-
-
 /* ------------------ StateMachine Modes -----------------*/
 
 #define Normal              0
@@ -70,7 +54,7 @@ byte OperationMode    =     0;
 
 // Versionsnummer der Speicherinhalts
 
-#define CONFIG_VERSION "V94" 
+#define CONFIG_VERSION "V95" 
 #define CONFIG_START 1
 
 typedef struct {
@@ -86,29 +70,17 @@ typedef struct {
 } LightMode_t;
 
 typedef struct  {
-  char ModuleName[8];                        // Name des Moduls
-  byte RCChannel;
-  byte SwitchType;                                                                                                // UNUSED
-  int SwitchPositions[7];                                                                                        // UNUSED
-  byte MainBrightness[MaxLEDAnzahl];
-  byte LEDModeStates[MaxLEDAnzahl];
-  LightMode_t LightModes[MaxLEDAnzahl];
-  char version_of_program[4]; 
+  char ModuleName[8];                        // Module Name
+  byte RCChannel;                            // Used RC Channel
+  byte SwitchType;                           // Type of RC Switch (0 = 2 Pos, 1 = 3 Pos, 2 = 6 Pos)
+  int SwitchPositions[7];                    // 
+  byte MainBrightness[MaxLEDAnzahl];         // Main LED Brightness
+  byte LEDModeStates[MaxLEDAnzahl];          // LED States ON/OFF
+  LightMode_t LightModes[MaxLEDAnzahl];      // LED Struct
+  char version_of_program[4];                // EEPROM Version
 } StoreStruct;
 
-/* LEDNumber          - Anzahl der benutzen LEDs 
- * SwitchType         - Anzahl der Schaltpositionen
- * SwitchPositions    - Umschaltpositionen zwischen den Zuständen der Kanäle
- *  
- * MainBrightness      - Helligkeitsstufen der einzelnen LEDs
- * LEDModeStates      - Gibt an, ob die LEDs in dem aktuellen Schaltzustand aktiv oder inaktiv sind
- * LEDBlinkStates     - In welchem Zustand soll die LED blinken
- * LEDBlinkTime       - mit welcher Geschwindigkeit soll die LED blinken
- *  
- */
-
-
-/* --------------------------- LEDSettigs - Vorbelegung des EEPROMS  --------------------- */
+/* --------------------------- LEDSettigs - Default EEPROMS  --------------------- */
 
 StoreStruct LEDSettings =             {   
               "Module",
@@ -116,9 +88,9 @@ StoreStruct LEDSettings =             {
                 2,                                                                                           //  SwitchType    0 = 2 Pos, 1 = 3 Pos, 2 = 6 Pos       
                    
               //      0         1         2          3          4           5            6     
-              //  Min |         Low                  |                 High              |   Max                //  2 Position Switch                   Siehe *(2)     
-              //  Min |         Low       |         Mid         |           High         |   Max                //  3 Position Switch                   Siehe *(3)
-              //  Min |  Low 3  |  Low 2  |   Low 1  |  High 1  |   High 2  |   High 3   |   Max                //  6 Positionen Switch     // UNUSED   Siehe *(4)
+              //  Min |         Low                  |                 High              |   Max                //  2 Position Switch                   See *(2)     
+              //  Min |         Low       |         Mid         |           High         |   Max                //  3 Position Switch                   See *(3)
+              //  Min |  Low 3  |  Low 2  |   Low 1  |  High 1  |   High 2  |   High 3   |   Max                //  6 Positionen Switch                 See *(4)
               {     1000,     1100,     1300,      1500,      1700,       1900,        2000 },                  //  SwitchPositions         
               
               //                                *                       *                       *                       *                        
