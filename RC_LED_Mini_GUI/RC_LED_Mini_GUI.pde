@@ -1,24 +1,11 @@
 /*   
 
-	AAAAA
-
-	RC-LED-Mini GUI 
+	    RC-LED-Mini GUI 
       Version 0.95 
       + Code Cleanup 1
       Alex B.  
      (KillaMeerschwein) 
 	 
-	 neues feature alles gut
-	 erweiterung fertig.
-
-Master Löschen!
-	 PiffPaff
-	 
-	 feature A
-	   und weiter
-	   usw
-	 
-	ultra sinnvolle funktion
 */
 
 
@@ -31,8 +18,6 @@ int MaxLEDAnzahl = 18;
 int MaxLEDStates = 6;
 int MaxLEDBrightness = 3;
 int LEDModes = 10;
-
-// BBBBBBBB
 
 ControlP5 cp5;
 
