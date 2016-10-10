@@ -2,7 +2,8 @@
 
 	    RC-LED-Mini GUI 
       Version 0.95 
-      + Code Cleanup 1
+      + Try Catch COM
+      + Code Cleanup
       Alex B.  
      (KillaMeerschwein) 
 	 
@@ -639,17 +640,23 @@ void ReadSetting() {
 
 void ConnectButton() {
 
-      btnConnect.hide();
-      SerialPort  = Serial.list()[int(slbComPorts.getValue())];
-      g_serial = new Serial(this, SerialPort, GUI_BaudRate);                                                     
-      println( SerialPort + "    " + GUI_BaudRate);
-      btnDisconnect.show();
-      btnReadLED.unlock();
-      btnWriteLED.unlock();
-      btnReadSettings.unlock();
-      btnWriteSettings.unlock();
-      g_serial.write("COM\n");         // Verbindungsaufbau
- 
+      try {
+          SerialPort  = Serial.list()[int(slbComPorts.getValue())];
+          g_serial = new Serial(this, SerialPort, GUI_BaudRate);                                                     
+          println( SerialPort + "    " + GUI_BaudRate);
+          
+          btnConnect.hide();
+          btnDisconnect.show();
+          btnReadLED.unlock();
+          btnWriteLED.unlock();
+          btnReadSettings.unlock();
+          btnWriteSettings.unlock();
+          g_serial.write("COM\n");         // Verbindungsaufbau
+      }
+      
+      catch (NullPointerException e) {
+          println("Couldn't Open COM Port: " + e);
+      };
 }
 
 void DisconnectButton() {
