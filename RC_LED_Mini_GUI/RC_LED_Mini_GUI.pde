@@ -2,8 +2,6 @@
 
 	    RC-LED-Mini GUI 
       Version 0.95 
-      + Try Catch COM
-      + Code Cleanup
       Alex B.  
      (KillaMeerschwein) 
 	 
